@@ -27,8 +27,8 @@ const DUMMY_DATA = [
   },
 ];
 
-const Column = () => {
-  return DUMMY_DATA.map((task) => <TaskItem key={task.id} showTask={task} />);
+const Column = ({ data }) => {
+  return data.map((task) => <TaskItem key={task.id} showTask={task} />);
 };
 
 export default Column;
