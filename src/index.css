@@ -1,0 +1,90 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.taskItem {
+  padding: 20px;
+  border: 1px solid steelblue;
+  border-radius: 10px;
+  margin: 10px;
+  cursor: pointer;
+  min-width: 33vh;
+}
+
+.hover {
+  border: 1px solid red;
+}
+
+.App {
+  /* display: flex; */
+  justify-content: space-between;
+}
+
+#root {
+  /* display: flex; */
+  max-width: 100%;
+  min-height: 300px;
+  min-width: 33vh;
+}
+
+.taskName {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.taskItem b {
+  margin-left: 10px;
+}
+
+.taskAssignee {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.taskPrior.low {
+  padding: 1px 4px;
+  border: 1px solid orange;
+  width: fit-content;
+  border-radius: 15px;
+  background-color: orange;
+}
+
+.taskPrior.high {
+  padding: 1px 4px;
+  border: 1px solid red;
+  width: fit-content;
+  border-radius: 15px;
+  background-color: red;
+}
+
+.taskPrior.medium {
+  padding: 1px 4px;
+  border: 1px solid rgb(255, 85, 0);
+  width: fit-content;
+  border-radius: 15px;
+  background-color: rgb(255, 85, 0);
+}
