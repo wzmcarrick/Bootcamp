@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { AiOutlineCheckCircle } from 'react-icons/ai'
 import { FiThumbsUp } from 'react-icons/fi'
+import { Card } from 'antd'
+
 
 const TaskItem = ({ showTask }) => {
 
@@ -25,12 +27,15 @@ const TaskItem = ({ showTask }) => {
   }
 
   return (
-    <div className={`taskItem ${hovered ? 'hover' : ''}`} onClick={clickEventHandler} onMouseEnter={toggleHover} onMouseLeave={toggleHover}>
+    <Card className={`taskItem ${hovered ? 'hover' : ''}`} onClick={clickEventHandler} onMouseEnter={toggleHover} onMouseLeave={toggleHover} hoverable={true}>
+      {/* <div className={`taskItem ${hovered ? 'hover' : ''}`} onClick={clickEventHandler} onMouseEnter={toggleHover} onMouseLeave={toggleHover}> */}
       <div className="taskName"><AiOutlineCheckCircle /> <b>{showTask.name}</b></div>
       <div className={`taskPrior ${addPriorClass(showTask)}`}>{showTask.priority}</div>
       <div className="taskDueDate">{showTask.dueDate}</div>
       <div className="taskAssignee">{showTask.assignee} <FiThumbsUp /></div>
-    </div>
+      {/* </div> */}
+    </Card>
+
   )
 
 };

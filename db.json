@@ -1,25 +1,32 @@
 {
     "tasks": [
         {
-            "id": 1,
+            "id": "1",
             "name": "task1",
-            "priority": "High",
             "assignee": "joseph",
-            "dueDate": "2022-02-02"
+            "dueDate": "2022-02-02",
+            "detail": "lorem ipsum..."
         },
         {
             "id": 2,
             "name": "task2",
-            "priority": "Low",
-            "assignee": "ziming",
-            "dueDate": "2022-02-01"
+            "assignee": "elton",
+            "dueDate": "2022-03-02",
+            "detail": "lorem ipsum..."
         },
         {
             "id": 3,
-            "name": "task3",
-            "priority": "Medium",
-            "assignee": "elton",
-            "dueDate": "2022-01-02"
+            "name": "task1",
+            "assignee": "ziming",
+            "dueDate": "2023-02-02",
+            "detail": "lorem ipsum..."
+        },
+        {
+            "id": 4,
+            "name": "task4",
+            "assignee": "ziming",
+            "dueDate": "2023-12-02",
+            "detail": "lorem ipsum..."
         }
     ]
 }
