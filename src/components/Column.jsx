@@ -27,8 +27,18 @@ import TaskItem from './TaskItem';
 //   },
 // ];
 
-const Column = ({ data }) => {
-  return data.map((task) => <TaskItem key={task.id} showTask={task} />);
+const Column = ({ data, onDelete }) => {
+  return (
+    // <>
+    data.map((task) => <TaskItem key={task.id} showTask={task} onDelete={onDelete} />)
+
+    // <div>
+    //   <button>Add Task</button>
+    // </div>
+    // </>
+
+
+  );
 };
 
 export default Column;

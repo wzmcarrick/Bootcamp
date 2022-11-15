@@ -52,10 +52,11 @@ code {
 .taskName {
   display: flex;
   align-items: center;
-  justify-content: left;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
-.taskItem b {
+b {
   margin-left: 10px;
 }
 
@@ -71,6 +72,7 @@ code {
   width: fit-content;
   border-radius: 15px;
   background-color: orange;
+  margin-bottom: 10px;
 }
 
 .taskPrior.high {
@@ -79,6 +81,7 @@ code {
   width: fit-content;
   border-radius: 15px;
   background-color: red;
+  margin-bottom: 10px;
 }
 
 .taskPrior.medium {
@@ -87,4 +90,15 @@ code {
   width: fit-content;
   border-radius: 15px;
   background-color: rgb(255, 85, 0);
+  margin-bottom: 10px;
+}
+
+/* .taskDueDate {
+  display: flex;
+  justify-content: left;
+} */
+
+.card {
+  margin: 10px 0px;
+  border-radius: 20px;
 }
