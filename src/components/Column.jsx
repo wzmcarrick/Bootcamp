@@ -39,7 +39,7 @@ const Column = () => {
   }
 
   return (
-    <div>
+    <div className='singleColumn'>
       <Button onClick={() => setShowAddTask(!showAddTask)}>Add Task</Button>
       {showAddTask ? <AddTask onAdd={addTask} /> : ''}
       {state.map((task) => <TaskItem key={task.id} showTask={task} onDelete={deleteTask} />)}

@@ -4,54 +4,23 @@ import Column from "./components/Column"
 // import { useEffect, useState } from "react";
 import 'antd/dist/antd.less';
 import { Button } from 'antd';
+import { useState } from "react";
 
 function App() {
 
-  // const [showAddTask, setShowAddTask] = useState(false)
-  // const [state, setState] = useState([])
+  const [columns, setColumns] = useState([<Column key={0} />])
 
-  // useEffect(() => {
-  //   axios.get('http://localhost:3001/tasks').then(res => {
-  //     console.log({ res })
-  //     setState(res.data)
-  //   })
-  // }, [])
-
-  // const addTask = (task) => {
-  //   console.log(task)
-  //   console.log(task.date)
-  //   const id = Math.floor(Math.random() * 10000) + 1
-  //   const newTask = {
-  //     id: id,
-  //     name: task.name,
-  //     assignee: task.assignee,
-  //     dueDate: task.date,
-  //     detail: task.detail,
-  //     priority: task.priority
-
-  //   }
-  //   console.log([...state, newTask])
-  //   setState([...state, newTask])
-
-  // }
-
-  // const deleteTask = (id) => {
-  //   setState(state.filter((st) => st.id !== id))
-  // }
+  const addColumn = (e) => {
+    e.preventDefault()
+    setColumns([...columns, <Column key={columns.length} />])
+  }
 
   return (
     <>
-      <Button>Add Column</Button>
+      <Button onClick={addColumn}>Add Column</Button>
       <div className="App">
-        {/* <Button onClick={() => setShowAddTask(!showAddTask)}>Add Task</Button>
-        {showAddTask ? <AddTask onAdd={addTask} /> : ''} */}
-        <Column />
-
+        {columns}
       </div>
-      {/* <div className="App">
-        <Column data={state} />
-        <Button>Add Task</Button>
-      </div> */}
     </>
 
   );

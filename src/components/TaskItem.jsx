@@ -8,16 +8,6 @@ import '../index.css'
 
 const TaskItem = ({ showTask, onDelete }) => {
 
-  // const clickEventHandler = () => {
-  //   alert(`This is ${showTask.name}!`);
-  // };
-
-  // const [hovered, setHovered] = useState(false)
-
-  // const toggleHover = () => {
-  //   setHovered(!hovered)
-  // }
-
   const addPriorClass = (showTask) => {
     if (showTask.priority === 'Low') {
       return 'low'
@@ -28,28 +18,11 @@ const TaskItem = ({ showTask, onDelete }) => {
     else return 'high'
   }
 
-
-  // const [fName, lName] = showTask.assignee.split(" ")
-  // console.log(showTask.assignee.split(" "))
-
-  // const initial = `${fName[0]}${lName[0]}`
-
-
-
-
-
-  // className={`taskItem ${hovered ? 'hover' : ''}`}
-  // onClick={clickEventHandler}
-  // onMouseEnter={toggleHover} onMouseLeave={toggleHover}
-
   return (
     <Card className="custom-card" style={{ margin: 10, borderRadius: 20 }} hoverable={true}>
-      {/* <div className={`taskItem ${hovered ? 'hover' : ''}`} onClick={clickEventHandler} onMouseEnter={toggleHover} onMouseLeave={toggleHover}> */}
       <div className="taskName"><span><CheckCircleOutlined /> <b>{showTask.name}</b></span> <CloseOutlined onClick={() => { onDelete(showTask.id) }} /></div>
       {showTask.priority ? <div className={`taskPrior ${addPriorClass(showTask)}`}>{showTask.priority}</div> : <div className='taskPrior'></div>}
       <div className="taskDueDate"><Avatar style={{ marginRight: 10 }}>{showTask.assignee ? showTask.assignee[0].toUpperCase() : ''}</Avatar>{showTask.dueDate}</div>
-      {/* <div className="taskAssignee">{showTask.assignee} <FiThumbsUp /></div> */}
-      {/* </div> */}
     </Card>
 
   )
