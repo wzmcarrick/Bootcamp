@@ -3,7 +3,7 @@
 // import { FiThumbsUp } from 'react-icons/fi'
 import { Card, Avatar } from 'antd'
 import { CloseOutlined, CheckCircleOutlined } from '@ant-design/icons'
-// import styles from '../index.css'
+import '../index.css'
 
 
 const TaskItem = ({ showTask, onDelete }) => {
@@ -29,17 +29,25 @@ const TaskItem = ({ showTask, onDelete }) => {
   }
 
 
+  // const [fName, lName] = showTask.assignee.split(" ")
+  // console.log(showTask.assignee.split(" "))
+
+  // const initial = `${fName[0]}${lName[0]}`
+
+
+
+
 
   // className={`taskItem ${hovered ? 'hover' : ''}`}
   // onClick={clickEventHandler}
   // onMouseEnter={toggleHover} onMouseLeave={toggleHover}
 
   return (
-    <Card style={{ margin: 10, borderRadius: 20 }} hoverable={true}>
+    <Card className="custom-card" style={{ margin: 10, borderRadius: 20 }} hoverable={true}>
       {/* <div className={`taskItem ${hovered ? 'hover' : ''}`} onClick={clickEventHandler} onMouseEnter={toggleHover} onMouseLeave={toggleHover}> */}
       <div className="taskName"><span><CheckCircleOutlined /> <b>{showTask.name}</b></span> <CloseOutlined onClick={() => { onDelete(showTask.id) }} /></div>
-      <div className={`taskPrior ${addPriorClass(showTask)}`}>{showTask.priority}</div>
-      <div className="taskDueDate"><Avatar style={{ marginRight: 10 }}>{showTask.assignee[0].toUpperCase()}</Avatar>{showTask.dueDate}</div>
+      {showTask.priority ? <div className={`taskPrior ${addPriorClass(showTask)}`}>{showTask.priority}</div> : <div className='taskPrior'></div>}
+      <div className="taskDueDate"><Avatar style={{ marginRight: 10 }}>{showTask.assignee ? showTask.assignee[0].toUpperCase() : ''}</Avatar>{showTask.dueDate}</div>
       {/* <div className="taskAssignee">{showTask.assignee} <FiThumbsUp /></div> */}
       {/* </div> */}
     </Card>

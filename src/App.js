@@ -1,35 +1,52 @@
 import Column from "./components/Column"
-import axios from 'axios'
-import { useEffect, useState } from "react";
-import 'antd/dist/antd.min.css';
-import { Button, Form, Input } from 'antd';
+// import axios from 'axios'
+// import AddTask from "./components/AddTask";
+// import { useEffect, useState } from "react";
+import 'antd/dist/antd.less';
+import { Button } from 'antd';
 
 function App() {
 
-  const [state, setState] = useState([])
+  // const [showAddTask, setShowAddTask] = useState(false)
+  // const [state, setState] = useState([])
 
-  useEffect(() => {
-    axios.get('http://localhost:3001/tasks').then(res => {
-      console.log({ res })
-      setState(res.data)
-    })
-  }, [])
+  // useEffect(() => {
+  //   axios.get('http://localhost:3001/tasks').then(res => {
+  //     console.log({ res })
+  //     setState(res.data)
+  //   })
+  // }, [])
 
-  const addTask = () => {
-    return <Form>
-      <Form.Item label="TaskName" name="taskName"><Input /></Form.Item>
-    </Form>
-  }
+  // const addTask = (task) => {
+  //   console.log(task)
+  //   console.log(task.date)
+  //   const id = Math.floor(Math.random() * 10000) + 1
+  //   const newTask = {
+  //     id: id,
+  //     name: task.name,
+  //     assignee: task.assignee,
+  //     dueDate: task.date,
+  //     detail: task.detail,
+  //     priority: task.priority
 
-  const deleteTask = (id) => {
-    setState(state.filter((st) => st.id !== id))
-  }
+  //   }
+  //   console.log([...state, newTask])
+  //   setState([...state, newTask])
+
+  // }
+
+  // const deleteTask = (id) => {
+  //   setState(state.filter((st) => st.id !== id))
+  // }
 
   return (
     <>
+      <Button>Add Column</Button>
       <div className="App">
-        <Column data={state} onDelete={deleteTask} />
-        <Button onClick={addTask}>Add Task</Button>
+        {/* <Button onClick={() => setShowAddTask(!showAddTask)}>Add Task</Button>
+        {showAddTask ? <AddTask onAdd={addTask} /> : ''} */}
+        <Column />
+
       </div>
       {/* <div className="App">
         <Column data={state} />

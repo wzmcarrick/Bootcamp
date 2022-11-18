@@ -7,9 +7,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   /* justify-content: center; */
-  flex-direction: column;
+  /* flex-direction: column; */
   min-height: 100vh;
 }
 
@@ -40,6 +40,8 @@ code {
 .App {
   /* display: flex; */
   justify-content: space-between;
+  background-color: bisque;
+  padding: 10px;
 }
 
 #root {
@@ -98,7 +100,10 @@ b {
   justify-content: left;
 } */
 
-.card {
-  margin: 10px 0px;
-  border-radius: 20px;
+.custom-card .ant-card-body {
+  /* background-color: yellow; */
+  width: 250px;
+  height: 150px;
+  /* margin: 10px;
+  border-radius: 20px */
 }

@@ -1,42 +1,49 @@
 import TaskItem from './TaskItem';
+import AddTask from "./AddTask";
+import { useState, useEffect } from "react";
+import { Button } from 'antd';
+import axios from 'axios'
 
-// const DUMMY_DATA = [
-//   {
-//     id: 1,
-//     name: 'task1',
-//     priority: 'High',
-//     assignee: 'joseph',
-//     dueDate: '2022-02-02',
-//     // detail: 'lorem ipsum...lorem...............',
-//   },
-//   {
-//     id: 2,
-//     name: 'task2',
-//     priority: 'Medium',
-//     assignee: 'elton',
-//     dueDate: '2022-03-02',
-//     // detail: 'lorem ipsum...',
-//   },
-//   {
-//     id: 3,
-//     name: 'task1',
-//     priority: 'Low',
-//     assignee: 'ziming',
-//     dueDate: '2023-02-02',
-//     // detail: 'lorem ipsum...',
-//   },
-// ];
+const Column = () => {
 
-const Column = ({ data, onDelete }) => {
+  const [showAddTask, setShowAddTask] = useState(false)
+  const [state, setState] = useState([])
+
+  useEffect(() => {
+    axios.get('http://localhost:3001/tasks').then(res => {
+      console.log({ res })
+      setState(res.data)
+    })
+  }, [])
+
+  const addTask = (task) => {
+    console.log(task)
+    console.log(task.date)
+    const id = Math.floor(Math.random() * 10000) + 1
+    const newTask = {
+      id: id,
+      name: task.name,
+      assignee: task.assignee,
+      dueDate: task.date,
+      detail: task.detail,
+      priority: task.priority
+
+    }
+    console.log([...state, newTask])
+    setState([...state, newTask])
+
+  }
+
+  const deleteTask = (id) => {
+    setState(state.filter((st) => st.id !== id))
+  }
+
   return (
-    // <>
-    data.map((task) => <TaskItem key={task.id} showTask={task} onDelete={onDelete} />)
-
-    // <div>
-    //   <button>Add Task</button>
-    // </div>
-    // </>
-
+    <div>
+      <Button onClick={() => setShowAddTask(!showAddTask)}>Add Task</Button>
+      {showAddTask ? <AddTask onAdd={addTask} /> : ''}
+      {state.map((task) => <TaskItem key={task.id} showTask={task} onDelete={deleteTask} />)}
+    </div>
 
   );
 };
