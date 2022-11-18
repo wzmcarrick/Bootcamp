@@ -5,6 +5,7 @@ import Column from "./components/Column"
 import 'antd/dist/antd.less';
 import { Button } from 'antd';
 import { useState } from "react";
+import NewColumn from "./components/NewColumn";
 
 function App() {
 
@@ -12,7 +13,7 @@ function App() {
 
   const addColumn = (e) => {
     e.preventDefault()
-    setColumns([...columns, <Column key={columns.length} />])
+    setColumns([...columns, <NewColumn key={columns.length} />])
   }
 
   return (
