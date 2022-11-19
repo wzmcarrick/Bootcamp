@@ -112,3 +112,7 @@ b {
   /* margin: 10px;
   border-radius: 20px */
 }
+
+.custom-form .ant-form {
+  text-align: left;
+}
