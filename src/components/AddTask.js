@@ -34,7 +34,7 @@ const AddTask = ({ onAdd }) => {
 
     return (
         <Form className="custom-form" form={form} labelCol={{ span: 7, }} wrapperCol={{ span: 16, }} onFinish={onSubmit}>
-            <Form.Item label="Name" name={"name"}><Input onChange={e => { setName(e.target.value) }} /></Form.Item>
+            <Form.Item label="Name" name={"name"} rules={[{ required: true, message: 'Please enter name!', },]}><Input onChange={e => { setName(e.target.value) }} /></Form.Item>
             <Form.Item label="Assignee" name={"assignee"}><Input onChange={e => { setAssignee(e.target.value) }} /></Form.Item>
             <Form.Item label="Date" name={"date"}><DatePicker /></Form.Item>
             <Form.Item label="Detail" name={"detail"}><Input onChange={e => { setDetail(e.target.value) }} /></Form.Item>

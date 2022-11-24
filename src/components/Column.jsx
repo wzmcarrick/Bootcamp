@@ -3,6 +3,7 @@ import AddTask from "./AddTask";
 import { useState, useEffect } from "react";
 import { Button } from 'antd';
 import axios from 'axios'
+// import { CloseOutlined, CheckCircleOutlined } from '@ant-design/icons'
 
 const Column = () => {
 
@@ -41,6 +42,7 @@ const Column = () => {
   return (
     <div className='singleColumn'>
       <Button onClick={() => setShowAddTask(!showAddTask)}>Add Task</Button>
+
       {showAddTask ? <AddTask onAdd={addTask} /> : ''}
       {state.map((task) => <TaskItem key={task.id} showTask={task} onDelete={deleteTask} />)}
     </div>
