@@ -6,7 +6,9 @@ import { CloseOutlined, CheckCircleOutlined } from '@ant-design/icons'
 import '../index.css'
 
 
+
 const TaskItem = ({ showTask, onDelete }) => {
+
 
   const addPriorClass = (showTask) => {
     if (showTask.priority === 'Low') {

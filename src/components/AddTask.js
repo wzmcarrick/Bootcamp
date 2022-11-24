@@ -1,7 +1,10 @@
 import { Button, Form, DatePicker, Radio, Input, Space } from "antd"
 import { useState } from "react"
+import { useDispatch } from "react-redux";
+import { nanoid } from "@reduxjs/toolkit";
+import { taskAdded } from "../features/addTask/taskSlice";
 
-const AddTask = ({ onAdd }) => {
+const AddTask = () => {
 
     const [name, setName] = useState("");
     const [assignee, setAssignee] = useState("");
@@ -11,6 +14,8 @@ const AddTask = ({ onAdd }) => {
 
     const [form] = Form.useForm();
 
+    const dispatch = useDispatch()
+
     const onSubmit = () => {
 
         console.log(name)
@@ -19,7 +24,16 @@ const AddTask = ({ onAdd }) => {
         console.log(detail)
         console.log(priority)
 
-        onAdd({ name, assignee, date: date.toISOString().split('T')[0], detail, priority })
+        // onAdd({ name, assignee, date: date.toISOString().split('T')[0], detail, priority })
+        dispatch(taskAdded({
+            id: nanoid(),
+            name,
+            assignee,
+            date: date.toISOString().split('T')[0],
+            detail,
+            priority
+        })
+        )
 
         setName(" ")
         setAssignee(" ")
