@@ -20,14 +20,14 @@ const Column = () => {
   // const [state, setState] = useState([])
 
 
-  useEffect(() => {
-    axios.get('http://localhost:3001/tasks').then(res => {
-      console.log({ res })
-      console.log(res.data)
-      dispatch(setTasks(res.data))
-      // setState(res.data)
-    })
-  }, [])
+  // useEffect(() => {
+  //   axios.get('http://localhost:3001/tasks').then(res => {
+  //     console.log({ res })
+  //     console.log(res.data)
+  //     dispatch(setTasks(res.data))
+  //     // setState(res.data)
+  //   })
+  // }, [])
 
   console.log(tasks)
 

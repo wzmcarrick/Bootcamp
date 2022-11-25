@@ -8,6 +8,10 @@ const { TextArea } = Input;
 
 const AddTask = () => {
 
+    const [form] = Form.useForm();
+
+    const dispatch = useDispatch()
+
     const [name, setName] = useState("");
     const [assignee, setAssignee] = useState("");
     const [date, setDate] = useState(new Date());
@@ -63,9 +67,7 @@ const AddTask = () => {
         setPriority(" ")
     };
 
-    const [form] = Form.useForm();
 
-    const dispatch = useDispatch()
 
     return (
 
