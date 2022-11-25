@@ -4,11 +4,23 @@
 import { Card, Avatar } from 'antd'
 import { CloseOutlined, CheckCircleOutlined } from '@ant-design/icons'
 import '../index.css'
+import { useDispatch } from "react-redux";
+import { taskDeleted } from "../features/addTask/taskSlice";
+import { useSelector } from 'react-redux';
 
 
 
-const TaskItem = ({ showTask, onDelete }) => {
+const TaskItem = ({ showTask }) => {
 
+  const dispatch = useDispatch()
+  const filteredTasks = useSelector(state => state.tasks.filter(s => s.id !== showTask.id))
+  // const tasks = useSelector(state => state.tasks)
+  // console.log(tasks)
+
+  const deleteTask = () => {
+    dispatch(taskDeleted(filteredTasks))
+    // setState(state.filter((st) => st.id !== id))
+  }
 
   const addPriorClass = (showTask) => {
     if (showTask.priority === 'Low') {
@@ -27,7 +39,7 @@ const TaskItem = ({ showTask, onDelete }) => {
           <CheckCircleOutlined />
           <b>{showTask.name}</b>
         </span>
-        <CloseOutlined onClick={() => { onDelete(showTask.id) }} />
+        <CloseOutlined onClick={deleteTask} />
       </div>
       {showTask.priority ? <div className={`taskPrior ${addPriorClass(showTask)}`}>{showTask.priority}</div> : <div></div>}
       <div className="taskDueDate"> <Avatar style={{ marginRight: 10 }}>{showTask.assignee ? showTask.assignee[0].toUpperCase() : ''}</Avatar>{showTask.dueDate}</div>

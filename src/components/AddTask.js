@@ -20,6 +20,7 @@ const AddTask = () => {
 
         console.log(name)
         console.log(assignee)
+        // console.log(date)
         console.log(date.toISOString().split('T')[0])
         console.log(detail)
         console.log(priority)
@@ -29,28 +30,34 @@ const AddTask = () => {
             id: nanoid(),
             name,
             assignee,
-            date: date.toISOString().split('T')[0],
+            dueDate: date.toISOString().split('T')[0],
             detail,
             priority
         })
         )
 
-        setName(" ")
-        setAssignee(" ")
-        setDate(new Date().toISOString().split('T')[0])
-        setDetail(" ")
-        setPriority(" ")
+        // setName(" ")
+        // setAssignee(" ")
+        // setDate(new Date())
+        // setDetail(" ")
+        // setPriority(" ")
     }
 
     const onReset = () => {
         form.resetFields();
+        setName(" ")
+        setAssignee(" ")
+        setDate(new Date())
+        setDetail(" ")
+        setPriority(" ")
+
     };
 
     return (
         <Form className="custom-form" form={form} labelCol={{ span: 7, }} wrapperCol={{ span: 16, }} onFinish={onSubmit}>
             <Form.Item label="Name" name={"name"} rules={[{ required: true, message: 'Please enter name!', },]}><Input onChange={e => { setName(e.target.value) }} /></Form.Item>
             <Form.Item label="Assignee" name={"assignee"}><Input onChange={e => { setAssignee(e.target.value) }} /></Form.Item>
-            <Form.Item label="Date" name={"date"}><DatePicker /></Form.Item>
+            <Form.Item label="Date" name={"date"}><DatePicker onChange={e => { setDate(e._d) }} /></Form.Item>
             <Form.Item label="Detail" name={"detail"}><Input onChange={e => { setDetail(e.target.value) }} /></Form.Item>
             <Form.Item label="Priority" name={"priority"}>
                 <Radio.Group onChange={(e) => { setPriority(e.target.value) }} value={priority}>

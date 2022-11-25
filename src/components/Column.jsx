@@ -4,21 +4,32 @@ import { useState, useEffect } from "react";
 import { Button } from 'antd';
 import axios from 'axios'
 // import { CloseOutlined, CheckCircleOutlined } from '@ant-design/icons'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setTasks } from '../features/addTask/taskSlice'
+// import { useDispatch } from "react-redux";
+import { taskDeleted } from "../features/addTask/taskSlice";
+
 
 const Column = () => {
+
+  const dispatch = useDispatch()
 
   const tasks = useSelector(state => state.tasks)
 
   const [showAddTask, setShowAddTask] = useState(false)
-  const [state, setState] = useState([])
+  // const [state, setState] = useState([])
 
-  // useEffect(() => {
-  //   axios.get('http://localhost:3001/tasks').then(res => {
-  //     console.log({ res })
-  //     setState(res.data)
-  //   })
-  // }, [])
+
+  useEffect(() => {
+    axios.get('http://localhost:3001/tasks').then(res => {
+      console.log({ res })
+      console.log(res.data)
+      dispatch(setTasks(res.data))
+      // setState(res.data)
+    })
+  }, [])
+
+  console.log(tasks)
 
   // const addTask = (task) => {
   //   console.log(task)
@@ -38,16 +49,18 @@ const Column = () => {
 
   // }
 
-  const deleteTask = (id) => {
-    setState(state.filter((st) => st.id !== id))
-  }
+  // const deleteTask = () => {
+  //   dispatch(taskDeleted(id))
+  //   // setState(state.filter((st) => st.id !== id))
+
+  // }
 
   return (
     <div className='singleColumn'>
       <Button onClick={() => setShowAddTask(!showAddTask)}>Add Task</Button>
 
       {showAddTask ? <AddTask /> : ''}
-      {tasks.map((task) => <TaskItem key={task.id} showTask={task} onDelete={deleteTask} />)}
+      {tasks.map((task) => <TaskItem key={task.id} showTask={task} />)}
     </div>
 
   );
