@@ -16,7 +16,7 @@ const Column = () => {
 
   const tasks = useSelector(state => state.tasks)
 
-  const [showAddTask, setShowAddTask] = useState(false)
+  // const [showAddTask, setShowAddTask] = useState(false)
   // const [state, setState] = useState([])
 
 
