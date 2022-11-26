@@ -10,11 +10,11 @@ import { setTasks } from '../features/addTask/taskSlice'
 import { taskDeleted } from "../features/addTask/taskSlice";
 
 
-const Column = () => {
+const Column = ({ col, colIndex }) => {
 
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
-  const tasks = useSelector(state => state.tasks)
+  // const tasks = useSelector(state => state.tasks)
 
   // const [showAddTask, setShowAddTask] = useState(false)
   // const [state, setState] = useState([])
@@ -29,7 +29,8 @@ const Column = () => {
   //   })
   // }, [])
 
-  console.log(tasks)
+  // console.log("tasks", tasks.columns)
+  console.log(col, colIndex)
 
   // const addTask = (task) => {
   //   console.log(task)
@@ -60,8 +61,8 @@ const Column = () => {
       {/* <Button onClick={() => setShowAddTask(!showAddTask)}>Add Task</Button>
 
       {showAddTask ? <AddTask /> : ''} */}
-      <AddTask />
-      {tasks.map((task) => <TaskItem key={task.id} showTask={task} />)}
+      {/* <AddTask colIndex={colIndex} col={col} /> */}
+      {col.colTasks.map((colTask) => <TaskItem key={colTask.id} colName={col.colName} colIndex={colIndex} showTask={colTask} />)}
     </div>
 
   );

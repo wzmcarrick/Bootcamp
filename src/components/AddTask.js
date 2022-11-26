@@ -2,11 +2,11 @@ import { Button, Form, DatePicker, Radio, Input, Modal, Space } from "antd"
 import { useState } from "react"
 import { useDispatch } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
-import { taskAdded } from "../features/addTask/taskSlice";
+import { taskAdded, setSelectedColIndex } from "../features/addTask/taskSlice";
 
 const { TextArea } = Input;
 
-const AddTask = () => {
+const AddTask = ({ col, colIndex }) => {
 
     const [form] = Form.useForm();
 
@@ -22,19 +22,54 @@ const AddTask = () => {
 
     const showModal = () => {
         setIsModalOpen(true);
+        dispatch(setSelectedColIndex(colIndex))
+        console.log(colIndex)
     };
 
     const handleOk = () => {
-
-        dispatch(taskAdded({
+        console.log(col, colIndex)
+        // console.log(form.getFieldValue())
+        // dispatch(taskAdded(
+        //     {
+        //         colName: 'Col1',
+        //         colTasks: [
+        //             {
+        //                 id: nanoid(),
+        //                 name,
+        //                 assignee,
+        //                 dueDate: date.toISOString().split('T')[0],
+        //                 detail,
+        //                 priority
+        //             }
+        //         ]
+        //     }
+        // )
+        const newTask = {
             id: nanoid(),
             name,
             assignee,
             dueDate: date.toISOString().split('T')[0],
             detail,
             priority
-        })
-        )
+        };
+
+        // const newCol = col.map((c, index) => {
+        //     if (index === colIndex) {
+        //         return {
+        //             colName: c.Title,
+        //             colTasks: [c.colTasks, newTask]
+        //         }
+        //     }
+        //     return c
+        // })
+        const addedTask = {
+            colName: col.colName,
+            colTasks: newTask
+        }
+
+
+        dispatch(taskAdded(addedTask))
+
         setIsModalOpen(false);
         form.resetFields();
         setName(" ")

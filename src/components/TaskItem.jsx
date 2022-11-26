@@ -5,21 +5,54 @@ import { Card, Avatar } from 'antd'
 import { CloseOutlined, CheckCircleOutlined } from '@ant-design/icons'
 import '../index.css'
 import { useDispatch } from "react-redux";
-import { taskDeleted } from "../features/addTask/taskSlice";
+import { taskDeleted, setSelectedColIndex } from "../features/addTask/taskSlice";
 import { useSelector } from 'react-redux';
 
 
 
-const TaskItem = ({ showTask }) => {
+const TaskItem = ({ showTask, colName, colIndex }) => {
 
   const dispatch = useDispatch()
-  const filteredTasks = useSelector(state => state.tasks.filter(s => s.id !== showTask.id))
-  // const tasks = useSelector(state => state.tasks)
-  // console.log(tasks)
+  const filteredTasks = useSelector(state => state.tasks.columns.map(c => {
+    if (c.colTasks.id !== showTask.id) {
+      return c.colTasks
+    }
+  }))
+  // .filter(s => s.colTasks.id !== showTask.id)
+  // console.log("filteredTasks", filteredTasks)
+
+  // const toBeDeletedTask = {
+  //   colName: colName,
+  //   colTasks: {
+  //     id: showTask.id,
+  //     name: showTask.name,
+  //     assignee: showTask.assignee,
+  //     dueDate: showTask.dueDate,
+  //     detail: showTask.detail,
+  //     priority: showTask.priority
+  //   }
+  // }
+
+  const toBeDeletedTask =
+  {
+    id: showTask.id,
+    name: showTask.name,
+    assignee: showTask.assignee,
+    dueDate: showTask.dueDate,
+    detail: showTask.detail,
+    priority: showTask.priority
+  }
+
 
   const deleteTask = () => {
-    dispatch(taskDeleted(filteredTasks))
-    // setState(state.filter((st) => st.id !== id))
+    console.log('delete', showTask.id)
+
+    // .filter(s => s.colTasks.id !== showTask.id)
+    console.log("filteredTasks", filteredTasks)
+    console.log("tobe deleted task", toBeDeletedTask)
+    dispatch(setSelectedColIndex(colIndex))
+    console.log(colIndex)
+    dispatch(taskDeleted(toBeDeletedTask))
   }
 
   const addPriorClass = (showTask) => {
