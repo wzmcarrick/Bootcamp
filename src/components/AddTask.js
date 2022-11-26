@@ -23,27 +23,10 @@ const AddTask = ({ col, colIndex }) => {
     const showModal = () => {
         setIsModalOpen(true);
         dispatch(setSelectedColIndex(colIndex))
-        console.log(colIndex)
     };
 
     const handleOk = () => {
-        console.log(col, colIndex)
-        // console.log(form.getFieldValue())
-        // dispatch(taskAdded(
-        //     {
-        //         colName: 'Col1',
-        //         colTasks: [
-        //             {
-        //                 id: nanoid(),
-        //                 name,
-        //                 assignee,
-        //                 dueDate: date.toISOString().split('T')[0],
-        //                 detail,
-        //                 priority
-        //             }
-        //         ]
-        //     }
-        // )
+
         const newTask = {
             id: nanoid(),
             name,
@@ -53,15 +36,6 @@ const AddTask = ({ col, colIndex }) => {
             priority
         };
 
-        // const newCol = col.map((c, index) => {
-        //     if (index === colIndex) {
-        //         return {
-        //             colName: c.Title,
-        //             colTasks: [c.colTasks, newTask]
-        //         }
-        //     }
-        //     return c
-        // })
         const addedTask = {
             colName: col.colName,
             colTasks: newTask

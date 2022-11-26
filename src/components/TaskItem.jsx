@@ -1,6 +1,3 @@
-// import { useState } from "react";
-// import { AiOutlineCheckCircle } from 'react-icons/ai'
-// import { FiThumbsUp } from 'react-icons/fi'
 import { Card, Avatar } from 'antd'
 import { CloseOutlined, CheckCircleOutlined } from '@ant-design/icons'
 import '../index.css'
@@ -10,28 +7,9 @@ import { useSelector } from 'react-redux';
 
 
 
-const TaskItem = ({ showTask, colName, colIndex }) => {
+const TaskItem = ({ showTask, colIndex }) => {
 
   const dispatch = useDispatch()
-  const filteredTasks = useSelector(state => state.tasks.columns.map(c => {
-    if (c.colTasks.id !== showTask.id) {
-      return c.colTasks
-    }
-  }))
-  // .filter(s => s.colTasks.id !== showTask.id)
-  // console.log("filteredTasks", filteredTasks)
-
-  // const toBeDeletedTask = {
-  //   colName: colName,
-  //   colTasks: {
-  //     id: showTask.id,
-  //     name: showTask.name,
-  //     assignee: showTask.assignee,
-  //     dueDate: showTask.dueDate,
-  //     detail: showTask.detail,
-  //     priority: showTask.priority
-  //   }
-  // }
 
   const toBeDeletedTask =
   {
@@ -45,13 +23,8 @@ const TaskItem = ({ showTask, colName, colIndex }) => {
 
 
   const deleteTask = () => {
-    console.log('delete', showTask.id)
-
-    // .filter(s => s.colTasks.id !== showTask.id)
-    console.log("filteredTasks", filteredTasks)
     console.log("tobe deleted task", toBeDeletedTask)
     dispatch(setSelectedColIndex(colIndex))
-    console.log(colIndex)
     dispatch(taskDeleted(toBeDeletedTask))
   }
 

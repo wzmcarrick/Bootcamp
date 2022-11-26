@@ -37,18 +37,9 @@ const initialState = {
                 },
             ]
         },
-
-
-        // {
-        //     id: 2,
-        //     name: "task2",
-        //     assignee: "elton",
-        //     dueDate: "2022-03-02",
-        //     detail: "lorem ipsum...",
-        //     priority: "Low"
-        // },
     ],
-    selectedColIndex: 0
+    selectedColIndex: 0,
+    columnName: ''
 }
 
 export const taskSlice = createSlice({
@@ -57,12 +48,6 @@ export const taskSlice = createSlice({
     reducers: {
         taskAdded: (state, action) => {
             console.log("added task", action.payload)
-            // state.columns.map((c) => {
-            //     if (c.colName === action.payload.colName) {
-            //         return c.colTasks.push(action.payload.colTasks)
-            //     }
-            //     return c
-            // })
             state.columns[state.selectedColIndex].colTasks.push(action.payload.colTasks)
         },
 
@@ -73,30 +58,24 @@ export const taskSlice = createSlice({
         },
 
         taskDeleted: (state, action) => {
-
-            console.log(action.payload);
             state.columns[state.selectedColIndex].colTasks = state.columns[state.selectedColIndex].colTasks.filter((t) => t.id !== action.payload.id)
             return state
-            // state.columns.colTasks.id
-            // state = state.filter((s) => { s.id !== action.payload });
-
-            // state.columns.map((c) => {
-            //     if (c.colName === action.payload.colName) {
-            //         return c.colTasks.filter((t) => { t.id !== action.payload.colTasks.id })
-            //     }
-            //     return c
-            // })
-
-            // state = action.payload
-            // return state
-            // console.log(state)
         },
+
         setSelectedColIndex: (state, action) => {
             state.selectedColIndex = action.payload
+        },
+
+        setColumnName: (state, action) => {
+            state.columnName = action.payload
+        },
+
+        columnAdded: (state, action) => {
+            state.columns.push(action.payload)
         }
     }
 })
 
-export const { taskAdded, setTasks, taskDeleted, setSelectedColIndex } = taskSlice.actions
+export const { taskAdded, setTasks, taskDeleted, setSelectedColIndex, setColumnName, columnAdded } = taskSlice.actions
 
 export default taskSlice.reducer
