@@ -1,20 +1,20 @@
 
 import Column from "../components/Column"
-import NewColumn from "../components/NewColumn";
+// import NewColumn from "../components/NewColumn";
 import { Button, Row, Col, Input } from 'antd';
 import { useState, useEffect } from "react";
 import 'antd/dist/antd.less';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import AddTask from "../components/AddTask";
-import { taskAdded, setSelectedColIndex, setColumnName, columnAdded } from "../features/addTask/taskSlice";
+import { taskAdded, setSelectedColIndex, setColumnName, columnAdded } from "../features/KanbanSlice";
 
 const Kanban = () => {
 
     const dispatch = useDispatch()
 
-    const tasks = useSelector(state => state.tasks.columns)
-    const newColName = useSelector(state => state.tasks.columnName)
+    const cols = useSelector(state => state.kanban.columns)
+    const newColName = useSelector(state => state.kanban.columnName)
 
     const onAddCol = () => {
         const newCol = {
@@ -26,19 +26,22 @@ const Kanban = () => {
 
     return (
         <>
-            <Row>
-                {tasks && tasks.map((task, colIndex) => {
+            <Row style={{ padding: 30 }}>
+                {cols && cols.map((col, colIndex) => {
                     return (
                         <>
-                            <Col key={task.colName}>
-                                <div>{task.colName}</div>
-                                <Column col={task} colIndex={colIndex} />
-                                <AddTask colIndex={colIndex} col={task} />
+                            <Col key={col.colName} style={{ margin: 5, background: 'yellow' }}>
+                                <div style={{ margin: 10 }}>
+                                    <div style={{ textAlign: "center" }}>{col.colName}</div>
+                                    <Column col={col} colIndex={colIndex} />
+                                    <AddTask colIndex={colIndex} col={col} />
+                                </div>
+
                             </Col>
                         </>
                     )
                 })}
-                <Col>
+                <Col style={{ margin: 5 }}>
                     <div>
                         <Input onChange={(e) => {
                             const value = e.target.value;

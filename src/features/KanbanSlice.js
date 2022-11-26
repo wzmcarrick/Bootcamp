@@ -42,8 +42,8 @@ const initialState = {
     columnName: ''
 }
 
-export const taskSlice = createSlice({
-    name: 'task',
+export const kanbanSlice = createSlice({
+    name: 'kanban',
     initialState,
     reducers: {
         taskAdded: (state, action) => {
@@ -76,6 +76,6 @@ export const taskSlice = createSlice({
     }
 })
 
-export const { taskAdded, setTasks, taskDeleted, setSelectedColIndex, setColumnName, columnAdded } = taskSlice.actions
+export const { taskAdded, setTasks, taskDeleted, setSelectedColIndex, setColumnName, columnAdded } = kanbanSlice.actions
 
-export default taskSlice.reducer
+export default kanbanSlice.reducer

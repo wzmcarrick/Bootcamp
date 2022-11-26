@@ -5,7 +5,7 @@ import Column from "./components/Column"
 import 'antd/dist/antd.less';
 import { Button } from 'antd';
 import { useState } from "react";
-import NewColumn from "./components/NewColumn";
+// import NewColumn from "./components/NewColumn";
 import Kanban from "./pages/Kanban";
 
 function App() {

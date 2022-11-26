@@ -2,7 +2,7 @@ import { Card, Avatar } from 'antd'
 import { CloseOutlined, CheckCircleOutlined } from '@ant-design/icons'
 import '../index.css'
 import { useDispatch } from "react-redux";
-import { taskDeleted, setSelectedColIndex } from "../features/addTask/taskSlice";
+import { taskDeleted, setSelectedColIndex } from "../features/KanbanSlice";
 import { useSelector } from 'react-redux';
 
 
@@ -39,7 +39,7 @@ const TaskItem = ({ showTask, colIndex }) => {
   }
 
   return (
-    <Card className="custom-card" style={{ margin: 10, borderRadius: 20 }} hoverable={true}>
+    <Card className="custom-card" style={{ borderRadius: 20, marginBottom: 10 }} hoverable={true}>
       <div className="taskName">
         <span>
           <CheckCircleOutlined />

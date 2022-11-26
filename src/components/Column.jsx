@@ -5,9 +5,9 @@ import { Button } from 'antd';
 import axios from 'axios'
 // import { CloseOutlined, CheckCircleOutlined } from '@ant-design/icons'
 import { useSelector, useDispatch } from 'react-redux';
-import { setTasks } from '../features/addTask/taskSlice'
+import { setTasks } from '../features/KanbanSlice'
 // import { useDispatch } from "react-redux";
-import { taskDeleted } from "../features/addTask/taskSlice";
+import { taskDeleted } from "../features/KanbanSlice";
 
 
 const Column = ({ col, colIndex }) => {
@@ -18,9 +18,12 @@ const Column = ({ col, colIndex }) => {
   // console.log(columnTasks)
 
   return (
-    <div className='singleColumn'>
+    // <div className='singleColumn'>
+    <div>
       {col.colTasks.map((colTask) => <TaskItem key={colTask.id} colIndex={colIndex} showTask={colTask} />)}
     </div>
+
+    // </div>
 
   );
 };

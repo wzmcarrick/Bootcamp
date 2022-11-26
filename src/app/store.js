@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
-import tasksReducer from '../features/addTask/taskSlice'
+import kanbanReducer from '../features/KanbanSlice'
 
 export const store = configureStore({
     reducer: {
-        tasks: tasksReducer
+        kanban: kanbanReducer
     },
 })
