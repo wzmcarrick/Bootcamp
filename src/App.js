@@ -7,12 +7,28 @@ import { Button } from 'antd';
 import { useState } from "react";
 // import NewColumn from "./components/NewColumn";
 import Kanban from "./pages/Kanban";
+import Login from "./components/Login";
+import Register from "./components/Register";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
 
 function App() {
 
   return (
     <>
-      <Kanban />
+      <h1>My App</h1>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<Kanban />} />
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </BrowserRouter>
+
+      {/* <Kanban /> */}
+      {/* <Login />
+      <Register /> */}
     </>
 
   );
