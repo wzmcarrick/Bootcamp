@@ -1,13 +1,10 @@
 
 import Column from "../components/Column"
-// import NewColumn from "../components/NewColumn";
 import { Button, Row, Col, Input } from 'antd';
-import { useState, useEffect } from "react";
 import 'antd/dist/antd.less';
-import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import AddTask from "../components/AddTask";
-import { taskAdded, setSelectedColIndex, setColumnName, columnAdded } from "../features/KanbanSlice";
+import { setColumnName, columnAdded } from "../features/KanbanSlice";
 
 const Kanban = () => {
 

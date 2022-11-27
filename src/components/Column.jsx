@@ -1,14 +1,4 @@
 import TaskItem from './TaskItem';
-import AddTask from "./AddTask";
-import { useState, useEffect } from "react";
-import { Button } from 'antd';
-import axios from 'axios'
-// import { CloseOutlined, CheckCircleOutlined } from '@ant-design/icons'
-import { useSelector, useDispatch } from 'react-redux';
-import { setTasks } from '../features/KanbanSlice'
-// import { useDispatch } from "react-redux";
-import { taskDeleted } from "../features/KanbanSlice";
-
 
 const Column = ({ col, colIndex }) => {
 

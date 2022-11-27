@@ -3,7 +3,7 @@ import { CloseOutlined, CheckCircleOutlined } from '@ant-design/icons'
 import '../index.css'
 import { useDispatch } from "react-redux";
 import { taskDeleted, setSelectedColIndex } from "../features/KanbanSlice";
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 
 
 

@@ -1,7 +1,6 @@
 import { Button, Form, DatePicker, Radio, Input, Modal, Space } from "antd"
 import { useState } from "react"
 import { useDispatch } from "react-redux";
-import { nanoid } from "@reduxjs/toolkit";
 import { taskAdded, setSelectedColIndex } from "../features/KanbanSlice";
 
 const { TextArea } = Input;
