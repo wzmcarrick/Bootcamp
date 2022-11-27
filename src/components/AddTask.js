@@ -1,4 +1,4 @@
-import { Button, Form, DatePicker, Radio, Input, Modal, Space } from "antd"
+import { Button, Form, DatePicker, Radio, Input, Modal } from "antd"
 import { useState } from "react"
 import { useDispatch } from "react-redux";
 import { taskAdded, setSelectedColIndex } from "../features/KanbanSlice";
@@ -124,12 +124,30 @@ const AddTask = ({ col, colIndex }) => {
                 ]}
             >
                 <Form className="custom-form" form={form} labelCol={{ span: 5, }} wrapperCol={{ span: 16, }}>
-                    <Form.Item label="Name" name={"name"} rules={[{ required: true, message: 'Please enter name!', },]}><Input onChange={e => { setName(e.target.value) }} /></Form.Item>
-                    <Form.Item label="Assignee" name={"assignee"}><Input onChange={e => { setAssignee(e.target.value) }} /></Form.Item>
-                    <Form.Item label="Date" name={"dueDate"} rules={[{ required: true, message: 'Please enter Date!', },]} ><DatePicker onChange={e => { setDate(e._d) }} /></Form.Item>
-                    <Form.Item label="Detail" name={"detail"}><TextArea rows={4} onChange={e => { setDetail(e.target.value) }} /></Form.Item>
+                    <Form.Item label="Name" name={"name"} rules={[{ required: true, message: 'Please enter name!', },]}><Input
+                        onChange={e => { setName(e.target.value) }}
+                        value={name}
+
+                    /></Form.Item>
+                    <Form.Item label="Assignee" name={"assignee"}><Input
+                        onChange={e => { setAssignee(e.target.value) }}
+                        value={assignee}
+
+                    /></Form.Item>
+                    <Form.Item label="Date" name={"dueDate"} rules={[{ required: true, message: 'Please enter Date!', },]} ><DatePicker
+                        onChange={e => { setDate(e._d) }}
+                        value={dueDate}
+
+                    /></Form.Item>
+                    <Form.Item label="Detail" name={"detail"}><TextArea rows={4}
+                        onChange={e => { setDetail(e.target.value) }}
+                        value={detail}
+
+                    /></Form.Item>
                     <Form.Item label="Priority" name={"priority"}>
-                        <Radio.Group onChange={(e) => { setPriority(e.target.value) }} value={priority}>
+                        <Radio.Group
+                            onChange={(e) => { setPriority(e.target.value) }}
+                            value={priority}>
                             <Radio value={'High'}>High</Radio>
                             <Radio value={'Medium'}>Medium</Radio>
                             <Radio value={'Low'}>Low</Radio>
