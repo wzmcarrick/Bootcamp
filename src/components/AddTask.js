@@ -2,6 +2,7 @@ import { Button, Form, DatePicker, Radio, Input, Modal } from "antd"
 import { useState } from "react"
 import { useDispatch } from "react-redux";
 import { taskAdded, setSelectedColIndex } from "../features/KanbanSlice";
+import { nanoid } from 'nanoid'
 
 const { TextArea } = Input;
 
@@ -58,6 +59,7 @@ const AddTask = ({ col, colIndex }) => {
         const newTask = {
             ...values,
             dueDate: dueDate.toISOString().split('T')[0],
+            id: nanoid(),
         };
         console.log(newTask)
 
