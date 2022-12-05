@@ -11,6 +11,8 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
@@ -24,7 +26,9 @@ function App() {
           <Route path="/dashboard" element={<Kanban />} />
           <Route path="/" element={<Home />} />
         </Routes>
+
       </BrowserRouter>
+      <ToastContainer />
 
       {/* <Kanban /> */}
       {/* <Login />

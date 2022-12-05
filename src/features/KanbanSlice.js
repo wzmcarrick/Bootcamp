@@ -15,7 +15,7 @@ const initialState = {
                 },
                 {
                     id: 2,
-                    name: "task1",
+                    name: "task2",
                     assignee: "joseph",
                     dueDate: "2022-02-02",
                     detail: "lorem ipsum...",
@@ -29,7 +29,7 @@ const initialState = {
             colTasks: [
                 {
                     id: 3,
-                    name: "task1",
+                    name: "task3",
                     assignee: "joseph",
                     dueDate: "2022-02-02",
                     detail: "lorem ipsum...",
@@ -72,10 +72,60 @@ export const kanbanSlice = createSlice({
 
         columnAdded: (state, action) => {
             state.columns.push(action.payload)
+        },
+
+        dragEnd: (state, action) => {
+            // action => type, payload
+            const {
+                taskId,
+                destination
+            } = action.payload
+
+            console.log('updated columns', JSON.stringify(state.columns.map(col => {
+                if (col.colName === destination.droppableId) {
+                    console.log(taskId, 'taskId')
+
+                    const movedTask = col.colTasks.find(task => task.id === parseInt(taskId, 10))
+                    console.log(movedTask, 'movedTask')
+                    const newTasks = [...col.colTasks.filter(e => e.id !== parseInt(taskId, 10))]
+
+                    newTasks.splice(destination.index, 0, movedTask)
+                    console.log('newtasks', JSON.stringify(newTasks, null, 2))
+
+                    return {
+                        ...col,
+                        colTasks: newTasks
+                    }
+                }
+
+                return col
+            }), null, 2))
+
+            state.columns = state.columns.map(col => {
+                if (col.colName === destination.droppableId) {
+                    console.log(taskId, 'taskId')
+
+                    const movedTask = col.colTasks.find(task => task.id === parseInt(taskId, 10))
+                    console.log(movedTask, 'movedTask')
+                    const newTasks = [...col.colTasks.filter(e => e.id !== parseInt(taskId, 10))]
+
+                    newTasks.splice(destination.index, 0, movedTask)
+                    console.log('newtasks', JSON.stringify(newTasks, null, 2))
+
+                    return {
+                        ...col,
+                        colTasks: newTasks
+                    }
+                }
+
+                return col
+            })
+
+
         }
     }
 })
 
-export const { taskAdded, setTasks, taskDeleted, setSelectedColIndex, setColumnName, columnAdded } = kanbanSlice.actions
+export const { taskAdded, setTasks, taskDeleted, setSelectedColIndex, setColumnName, columnAdded, dragEnd } = kanbanSlice.actions
 
 export default kanbanSlice.reducer

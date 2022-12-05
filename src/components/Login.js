@@ -10,6 +10,14 @@ const Login = () => {
     const [form] = Form.useForm();
     const navigate = useNavigate();
 
+    const onBack = () => {
+        toast("Wow so easy!");
+        setTimeout(() => {
+            navigate("/");
+        }, 1000)
+
+    }
+
     const onFinish = async () => {
         const res = await axios.post(
             "https://lambent-phoenix-5a89bb.netlify.app/.netlify/functions/auth/login",
@@ -18,7 +26,7 @@ const Login = () => {
                     ...form.getFieldsValue()
                 }
             }
-        )
+        );
         console.log(res)
 
         if (res?.data?.token) {
@@ -40,7 +48,7 @@ const Login = () => {
 
     return (
         <>
-            <Form name='Login' form={form} labelCol={{ span: 8 }} wrapperCol={{ span: 16 }} onFinish={onFinish} onFinishFailed={onFinishFailed} autoComplete="off">
+            <Form name='Login' form={form} labelCol={{ span: 8 }} wrapperCol={{ span: 16 }} onFinishFailed={onFinishFailed} autoComplete="off">
 
                 <Form.Item
                     label="Username"
@@ -83,12 +91,17 @@ const Login = () => {
                         span: 16,
                     }}
                 >
-                    <Button type="primary" htmlType="submit">
+                    <Button type="primary" htmlType="submit" onClick={() => onFinish()}>
                         Login
                     </Button>
+
+                    <Button onClick={onBack}>Back</Button>
+
                 </Form.Item>
 
             </Form>
+
+
         </>
 
     );

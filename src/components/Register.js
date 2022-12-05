@@ -9,6 +9,13 @@ const Register = () => {
     const [form] = Form.useForm();
     const navigate = useNavigate();
 
+    const onBack = () => {
+        setTimeout(() => {
+            navigate("/");
+        }, 1000)
+    }
+
+
     const onFinish = async () => {
         const res = await axios.post(
             "https://lambent-phoenix-5a89bb.netlify.app/.netlify/functions/auth",
@@ -75,6 +82,9 @@ const Register = () => {
                     <Button type="primary" htmlType="submit">
                         Register
                     </Button>
+
+                    <Button onClick={onBack}>Back</Button>
+
                 </Form.Item>
 
             </Form>

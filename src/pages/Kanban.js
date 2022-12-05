@@ -4,7 +4,9 @@ import { Button, Row, Col, Input } from 'antd';
 import 'antd/dist/antd.less';
 import { useSelector, useDispatch } from 'react-redux';
 import AddTask from "../components/AddTask";
-import { setColumnName, columnAdded } from "../features/KanbanSlice";
+import { setColumnName, columnAdded, dragEnd } from "../features/KanbanSlice";
+import { DragDropContext } from "react-beautiful-dnd";
+import { toast } from "react-toastify";
 
 const Kanban = () => {
 
@@ -20,38 +22,63 @@ const Kanban = () => {
         }
         dispatch(columnAdded(newCol))
     }
+    const onDragEnd = (result) => {
+        console.log('drag end', result)
+
+        const { destination, draggableId: taskId } = result
+
+        if (!destination || !destination.droppableId) {
+            toast.warning('You have dropped something out of the drappable area!')
+            return
+        }
+
+        // destination 
+        // which one was moved?
+
+        // original array => tasks?
+
+        // => new array with new postions
+
+        console.log('destination', destination)
+
+        dispatch(dragEnd({
+            destination,
+            taskId
+        }))
+
+    }
 
     return (
         <>
             <AuthRoute>
 
+                <DragDropContext onDragEnd={onDragEnd}>
+                    <Row style={{ padding: 30 }}>
+                        {cols && cols.map((col, colIndex) => {
+                            return (
+                                <>
+                                    <Col key={col.colName} style={{ margin: 5, background: 'yellow' }}>
+                                        <div style={{ margin: 10 }}>
+                                            <div style={{ textAlign: "center" }}>{col.colName}</div>
+                                            <Column col={col} colIndex={colIndex} />
+                                            <AddTask colIndex={colIndex} col={col} />
+                                        </div>
 
-                <Row style={{ padding: 30 }}>
-                    {cols && cols.map((col, colIndex) => {
-                        return (
-                            <>
-                                <Col key={col.colName} style={{ margin: 5, background: 'yellow' }}>
-                                    <div style={{ margin: 10 }}>
-                                        <div style={{ textAlign: "center" }}>{col.colName}</div>
-                                        <Column col={col} colIndex={colIndex} />
-                                        <AddTask colIndex={colIndex} col={col} />
-                                    </div>
-
-                                </Col>
-                            </>
-                        )
-                    })}
-                    <Col style={{ margin: 5 }}>
-                        <div>
-                            <Input onChange={(e) => {
-                                const value = e.target.value;
-                                dispatch(setColumnName(value))
-                            }} style={{ width: 100 }} />
-                        </div>
-                        <Button onClick={onAddCol}>Add Column</Button>
-                    </Col>
-                </Row>
-
+                                    </Col>
+                                </>
+                            )
+                        })}
+                        <Col style={{ margin: 5 }}>
+                            <div>
+                                <Input onChange={(e) => {
+                                    const value = e.target.value;
+                                    dispatch(setColumnName(value))
+                                }} style={{ width: 100 }} />
+                            </div>
+                            <Button onClick={onAddCol}>Add Column</Button>
+                        </Col>
+                    </Row>
+                </DragDropContext>
             </AuthRoute>
 
         </>
