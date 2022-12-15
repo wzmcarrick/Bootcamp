@@ -2,7 +2,8 @@ import { Button, Form, DatePicker, Radio, Input, Modal } from "antd"
 import { useState } from "react"
 import { useDispatch } from "react-redux";
 import { taskAdded, setSelectedColIndex } from "../features/KanbanSlice";
-import { nanoid } from 'nanoid'
+// import { nanoid } from 'nanoid';
+// import { nanoid } from "@reduxjs/toolkit";
 
 const { TextArea } = Input;
 
@@ -54,12 +55,22 @@ const AddTask = ({ col, colIndex }) => {
     //     setIsModalOpen(false);
     // };
 
+    // Generate a timestamp using Date.now()
+    const timestamp = Date.now();
+
+    // Generate a random number between 1 and 100
+    const randomNumber = Math.floor(Math.random() * 100) + 1;
+
+    // Concatenate the timestamp and random number to create a unique ID
+    const uniqueId = `${timestamp}${randomNumber}`;
+
     const onSubmit = (values) => {
 
         const newTask = {
             ...values,
             dueDate: dueDate.toISOString().split('T')[0],
-            id: nanoid(),
+            // id: parseInt(nanoid(), 10)
+            id: parseInt(uniqueId)
         };
         console.log(newTask)
 
