@@ -25,7 +25,7 @@ const Kanban = () => {
     const onDragEnd = (result) => {
         console.log('drag end', result)
 
-        const { destination, draggableId: taskId } = result
+        const { destination, source, draggableId: taskId } = result
 
         if (!destination || !destination.droppableId) {
             toast.warning('You have dropped something out of the drappable area!')
@@ -40,10 +40,13 @@ const Kanban = () => {
         // => new array with new postions
 
         console.log('destination', destination)
+        console.log('source', source)
+        console.log('draggableId', taskId)
 
         dispatch(dragEnd({
             destination,
-            taskId
+            taskId,
+            source
         }))
 
     }

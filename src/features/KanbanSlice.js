@@ -78,48 +78,54 @@ export const kanbanSlice = createSlice({
             // action => type, payload
             const {
                 taskId,
-                destination
+                destination,
+                source
             } = action.payload
 
-            // console.log('updated columns', JSON.stringify(state.columns.map(col => {
-            //     if (col.colName === destination.droppableId) {
-            //         console.log(taskId, 'taskId')
+            if (source.droppableId === destination.droppableId) {
+                state.columns = state.columns.map(col => {
+                    if (col.colName === destination.droppableId) {
+                        console.log(taskId, 'taskId')
 
-            //         const movedTask = col.colTasks.find(task => task.id === parseInt(taskId, 10))
-            //         console.log(movedTask, 'movedTask')
-            //         const newTasks = [...col.colTasks.filter(e => e.id !== parseInt(taskId, 10))]
+                        const movedTask = col.colTasks.find(task => task.id === parseInt(taskId, 10))
+                        console.log(movedTask, 'movedTask')
+                        const newTasks = [...col.colTasks.filter(e => e.id !== parseInt(taskId, 10))]
 
-            //         newTasks.splice(destination.index, 0, movedTask)
-            //         console.log('newtasks', JSON.stringify(newTasks, null, 2))
+                        newTasks.splice(destination.index, 0, movedTask)
+                        console.log('newtasks', JSON.stringify(newTasks, null, 2))
 
-            //         return {
-            //             ...col,
-            //             colTasks: newTasks
-            //         }
-            //     }
-
-            //     return col
-            // }), null, 2))
-
-            state.columns = state.columns.map(col => {
-                if (col.colName === destination.droppableId) {
-                    console.log(taskId, 'taskId')
-
-                    const movedTask = col.colTasks.find(task => task.id === parseInt(taskId, 10))
-                    console.log(movedTask, 'movedTask')
-                    const newTasks = [...col.colTasks.filter(e => e.id !== parseInt(taskId, 10))]
-
-                    newTasks.splice(destination.index, 0, movedTask)
-                    console.log('newtasks', JSON.stringify(newTasks, null, 2))
-
-                    return {
-                        ...col,
-                        colTasks: newTasks
+                        return {
+                            ...col,
+                            colTasks: newTasks
+                        }
                     }
-                }
 
-                return col
-            })
+                    return col
+                })
+
+            } else {
+
+                const sourceColumn = state.columns.find(c => c.colName === source.droppableId)
+                const movedTask = sourceColumn.colTasks.find(task => task.id === parseInt(taskId, 10))
+
+
+                state.columns = state.columns.map(col => {
+                    if (col.colName === source.droppableId) {
+                        const newTasks = [...col.colTasks.filter(e => e.id !== parseInt(taskId, 10))]
+                        return {
+                            ...col,
+                            colTasks: newTasks
+                        }
+                    }
+
+                    if (col.colName === destination.droppableId) {
+                        col.colTasks.splice(destination.index, 0, movedTask)
+                        return col
+                    }
+
+                    return col
+                })
+            }
 
 
         }
